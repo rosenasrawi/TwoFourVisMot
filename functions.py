@@ -23,15 +23,16 @@ def turnPositionsCircle(turnUpperPos, turnLowerPos, thisTurn):
 """ Block specifics """
 
 def blockSpecs():
-    targetColors = barColors.copy(); #random.shuffle(targetColors)
+    trialTypes = list(range(16)) #; random.shuffle(trialTypes)
+    random.shuffle(barColors)
 
-    return targetColors
+    return trialTypes
 
 """ Trial specifics """
 
 def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
     bars = [leftBarTop, rightBarTop, leftBarBot, rightBarBot]
-    
+
     # Bar orientations
     constel = constelTypes[thisItemConstel]; oris = []
     for i in constel:
@@ -48,10 +49,7 @@ def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
         leftBarTop.fillColor = targetColors.pop(); rightBarTop.fillColor = targetColors.pop()
         leftBarBot.fillColor = targetColors.pop(); rightBarBot.fillColor = targetColors.pop()
     elif loadType == 2:     # Load two
-        
-
         targetCol = targetColors.pop(random.randint(0,1)); nonTargetCol = targetColors.pop(0)
-
         distrib = colorDistrib[thisTargetLoc]
 
         bars[distrib[0]].fillColor = targetCol
@@ -76,7 +74,7 @@ def presentStim():
 
     thisFixTime = random.randint(fixTime[0], fixTime[1])
     
-    for i in range(thisFixTime):             # Fixation
+    for i in range(thisFixTime):              # Fixation
         mywin.flip()
     
     leftBarTop.setAutoDraw(True)
@@ -84,7 +82,7 @@ def presentStim():
     leftBarBot.setAutoDraw(True)
     rightBarBot.setAutoDraw(True)
 
-    for i in range(encodingTime):             # First encoding display
+    for i in range(encodingTime):             # Encoding display
         mywin.flip()
 
     leftBarTop.setAutoDraw(False)
@@ -92,7 +90,7 @@ def presentStim():
     leftBarBot.setAutoDraw(False)
     rightBarBot.setAutoDraw(False)
 
-    for i in range(delayTime):            # Memory delay
+    for i in range(delayTime):                # Memory delay
         mywin.flip()
 
     return thisFixTime

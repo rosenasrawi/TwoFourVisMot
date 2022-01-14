@@ -3,17 +3,13 @@
 from math import pi, atan2, degrees
 import itertools
 
-""" Configuration script """
+""" Configuration parameters """
 
+# Computer settings
 setting = 'home'
 screen = 'laptop'
 
 if setting == 'home':
-    triggerSend = False
-
-    # Directories
-    dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn3 - Sequential encoding/Data/Try-out'
-
     if screen == 'laptop':
         monitorHZ = 60
         monitorSize = [1536,960]
@@ -22,17 +18,10 @@ if setting == 'home':
         monitorHZ = 239
         monitorSize = [2560,1440]
         height = 35; distance = 70; vertResolution = 2560 
-
 elif setting == 'lab':
-    # Monitor
     monitorHZ = 239
     monitorSize = [1920,1080]
     height = 28; distance = 60; vertResolution = 1920 
-    triggerSend = True
-    resetTrigger = 0
-
-    dataDirectory = r'C:\Users\memticipation\Desktop\LABSSRV-DATA\_memticipationLabData\Rose\rn3-sequential-encoding\logfiles'
-    eyeDirectory = r'C:\Users\memticipation\Desktop\LABSSRV-DATA\_memticipationLabData\Rose\rn3-sequential-encoding\eyedata'
 
 deg_per_px = degrees(atan2(.5*height, distance)) / (.5*vertResolution) # Calculate the number of degrees that correspond to a single pixel
 
@@ -45,7 +34,6 @@ miniCircleRadius = int(0.15/deg_per_px)
 circleEdges = int(1/deg_per_px)
 
 # Degrees and ranges
-# maxTurn = 200/(200/monitorHZ)
 maxTurn = monitorHZ
 quarterCircle = 0.5*pi
 radStep = quarterCircle/maxTurn
@@ -67,8 +55,8 @@ right_turnUpper = [circleRadius, 0]
 right_turnLower = [-circleRadius, 0]
 
 # Colors
-backgroundColor = (50/510,50/510,50/510)                    # A1A1A1 had to change for the eye-tracker
-barColors = ["#C2A025", "#3843C2", "#2FC259", "#CF3C3C"]    # orange, blue, green, purple
+backgroundColor = (50/510, 50/510, 50/510)                  # darkdrey
+barColors = ["#C2A025", "#3843C2", "#2FC259", "#CF3C3C"]
 barColorNames = ['YELLOW', 'BLUE', 'GREEN', 'RED']       
 fixColor = (300/510,300/510,300/510)                        # lightgrey
 
@@ -82,16 +70,16 @@ feedbackTime = int(monitorHZ/4)                     # 250 ms
 textFont = 'Helvetica'
 fontSizeFeedback = int(0.3/deg_per_px)
 fontSizePreCue = int(0.4/deg_per_px)
-fontColor = (300/510,300/510,300/510)                       # lightgrey
+fontColor = fixColor                                # lightgrey
 
 # Trial types
 itemConstels     = [1,1,1,1, 2,2,2,2, 3,3,3,3, 4,4,4,4]
 targetLocs       = [1,2,3,4, 1,2,3,4, 1,2,3,4, 1,2,3,4]
 
-# orientation of items based on consteltype (1-4)
+# orientation of items, based on consteltype (1-4)
 constelTypes = {1: ['R','L','R','L'], 2: ['L','L','R','R'], 3: ['L','R','L','R'], 4: ['R','R','L','L']}
 
-# color distribution load two based on targetlocation (1-4)
+# color distribution load two, based on targetlocation (1-4)
 colorDistrib = {1: [0,3,1,2], 2: [1,2,0,3], 3: [2,1,0,3], 4: [3,0,1,2]}
 
 

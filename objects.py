@@ -95,3 +95,4 @@ feedbackText = visual.TextStim(
     color = fontColor,
     pos = [0,2*fixSize],
     height = fontSizeFeedback)
+    

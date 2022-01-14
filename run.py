@@ -1,15 +1,11 @@
 """ Import packages"""
-import random
 
 """ Import other task scripts """
 from functions import *
 
-""" Shuffle trial order """
-
-trialTypes = list(range(16))
-# random.shuffle(trialTypes)
-
-random.shuffle(barColors)
+""" Prepare block """
+loadType = 4
+trialTypes = blockSpecs()
 
 """ Run trials """
 
@@ -19,7 +15,7 @@ for i in trialTypes:
     thisItemConstel = itemConstels[i]
     thisTargetLoc = targetLocs[i]
 
-    targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType=4)
+    targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
     presentStim()
     clockwise, count = presentResponse(targetCol)
     presentTrialFeedback(clockwise, count, targetOri)

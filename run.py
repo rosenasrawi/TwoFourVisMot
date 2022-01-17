@@ -4,8 +4,9 @@
 from functions import *
 
 """ Prepare block """
-loadType = 4
+loadType = 2
 trialTypes, targetColors = blockSpecs()
+presentPrecueLoad(loadType, targetColors)
 
 """ Run trials """
 

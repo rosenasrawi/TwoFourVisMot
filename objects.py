@@ -96,6 +96,13 @@ feedbackText = visual.TextStim(
     pos = [0,2*fixSize],
     height = fontSizeFeedback)
     
+space2continue = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "Press [space] to continue",
+    color = fontColor,
+    pos = [0,-2*barSize[1]],
+    height = fontSizePreCue)
 
 # Precues
 
@@ -112,7 +119,8 @@ precueTextColor = visual.TextStim(
 precueColors0 = visual.TextStim(    
     win = mywin, 
     font = textFont,
-    text = "&",
+    text = "and",
+    color = fontColor,
     pos = fixPos,
     height = fontSizePreCue)
 

@@ -30,22 +30,46 @@ def blockSpecs():
 
     return trialTypes, targetColors
 
-# def presentPrecueLoad(loadType):
+def presentPrecueLoad(loadType, targetColors):
 
-#     precueTextColor.setAutoDraw(True)
-#     precueColors0.setAutoDraw(True)
+    if loadType == 4:
+        # Set specs
+        precueColors4a.color = targetColors[0]
+        precueColors4a.text = barColorNames[barColors.index(targetColors[0])]
+        
+        precueColors4b.color = targetColors[1]
+        precueColors4b.text = barColorNames[barColors.index(targetColors[1])]
+        
+        precueColors4c.color = targetColors[2]
+        precueColors4c.text = barColorNames[barColors.index(targetColors[2])]
+        
+        precueColors4d.color = targetColors[3]
+        precueColors4d.text = barColorNames[barColors.index(targetColors[3])]
 
-#     if loadType == 4:
+        # Turn objects on
+        precueColors4a.draw()
+        precueColors4b.draw()
+        precueColors4c.draw()
+        precueColors4d.draw()
 
-#         precueColors4a.color = barColors[0]
-#         precueColors4a.text = barColorNames[barColors.index(barColors[0])]
+    elif loadType == 2:
+        # Set specs
+        precueColors2a.color = targetColors[0]
+        precueColors2a.text = barColorNames[barColors.index(targetColors[0])]
+        
+        precueColors2b.color = targetColors[1]
+        precueColors2b.text = barColorNames[barColors.index(targetColors[1])]
 
-#         precueColors4b.text = 
-#         precueColors4c
-#         precueColors4d
-#     elif loadType == 2:
-#         barColors[0]; barColors[1]
+        # Turn objects on
+        precueColors2a.draw()
+        precueColors2b.draw()
 
+    precueTextColor.draw()
+    precueColors0.draw()
+    space2continue.draw()
+
+    mywin.flip()
+    event.waitKeys(keyList = 'space')
 
 """ Trial specifics """
 

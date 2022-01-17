@@ -5,12 +5,12 @@ from functions import *
 
 """ Prepare block """
 loadType = 4
-trialTypes = blockSpecs()
+trialTypes, targetColors = blockSpecs()
 
 """ Run trials """
 
 for i in trialTypes:
-    targetColors = barColors.copy()
+    # targetColors = barColors.copy()
 
     thisItemConstel = itemConstels[i]
     thisTargetLoc = targetLocs[i]

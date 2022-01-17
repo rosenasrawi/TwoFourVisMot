@@ -7,7 +7,7 @@ import itertools
 
 # Computer settings
 setting = 'home'
-screen = 'laptop'
+screen = 'monitor'
 
 if setting == 'home':
     if screen == 'laptop':
@@ -15,7 +15,7 @@ if setting == 'home':
         monitorSize = [1536,960]
         height = 22; distance = 50; vertResolution = 1536 
     elif screen == 'monitor':
-        monitorHZ = 239
+        monitorHZ = 60
         monitorSize = [2560,1440]
         height = 35; distance = 70; vertResolution = 2560 
 elif setting == 'lab':
@@ -46,6 +46,9 @@ leftBarTopPos = [-int(4/deg_per_px), int(4/deg_per_px)]     # Left top
 rightBarTopPos = [int(4/deg_per_px), int(4/deg_per_px)]     # Right top
 leftBarBotPos = [-int(4/deg_per_px), -int(4/deg_per_px)]    # Left bottom
 rightBarBotPos = [int(4/deg_per_px), -int(4/deg_per_px)]    # Right bottom
+
+leftBarPos = [-int(4/deg_per_px), 0]
+rightBarPos = [0, int(4/deg_per_px)] 
 
 fixPos = [0,0]
 

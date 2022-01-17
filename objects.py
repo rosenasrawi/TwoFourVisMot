@@ -96,3 +96,67 @@ feedbackText = visual.TextStim(
     pos = [0,2*fixSize],
     height = fontSizeFeedback)
     
+
+# Precues
+
+# Load
+precueTextColor = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "Relevant colors this block:",
+    color = fontColor,
+    pos = [0,2*barSize[1]],
+    height = fontSizePreCue)
+
+# Middle 
+precueColors0 = visual.TextStim(    
+    win = mywin, 
+    font = textFont,
+    text = "&",
+    pos = fixPos,
+    height = fontSizePreCue)
+
+# Quadrant in load 4
+precueColors4a = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "",
+    pos = leftBarTopPos,
+    height = fontSizePreCue)
+
+precueColors4b = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "",
+    pos = rightBarTopPos,
+    height = fontSizePreCue)
+
+precueColors4c = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "",
+    pos = leftBarBotPos,
+    height = fontSizePreCue)
+
+precueColors4d = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "",
+    pos = rightBarBotPos,
+    height = fontSizePreCue)
+
+# On two sides in load 2
+
+precueColors2a = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "",
+    pos = leftBarPos,
+    height = fontSizePreCue)
+
+precueColors2b =  visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "",
+    pos = rightBarPos,
+    height = fontSizePreCue)

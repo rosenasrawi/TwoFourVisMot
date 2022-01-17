@@ -1,5 +1,6 @@
 """ Import packages"""
 
+from json import load
 from psychopy import core, event
 from math import degrees, cos, sin
 from statistics import mean
@@ -24,9 +25,27 @@ def turnPositionsCircle(turnUpperPos, turnLowerPos, thisTurn):
 
 def blockSpecs():
     trialTypes = list(range(16)) #; random.shuffle(trialTypes)
-    random.shuffle(barColors)
+    targetColors = barColors.copy()
+    random.shuffle(targetColors)
 
-    return trialTypes
+    return trialTypes, targetColors
+
+# def presentPrecueLoad(loadType):
+
+#     precueTextColor.setAutoDraw(True)
+#     precueColors0.setAutoDraw(True)
+
+#     if loadType == 4:
+
+#         precueColors4a.color = barColors[0]
+#         precueColors4a.text = barColorNames[barColors.index(barColors[0])]
+
+#         precueColors4b.text = 
+#         precueColors4c
+#         precueColors4d
+#     elif loadType == 2:
+#         barColors[0]; barColors[1]
+
 
 """ Trial specifics """
 
@@ -46,16 +65,15 @@ def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
     # Bar colors
     if loadType == 4:       # Load four
         random.shuffle(targetColors) 
-        leftBarTop.fillColor = targetColors.pop(); rightBarTop.fillColor = targetColors.pop()
-        leftBarBot.fillColor = targetColors.pop(); rightBarBot.fillColor = targetColors.pop()
+        leftBarTop.fillColor = targetColors[0]; rightBarTop.fillColor = targetColors[1]
+        leftBarBot.fillColor = targetColors[2]; rightBarBot.fillColor = targetColors[3]
     elif loadType == 2:     # Load two
-        targetCol = targetColors.pop(random.randint(0,1)); nonTargetCol = targetColors.pop(0)
         distrib = colorDistrib[thisTargetLoc]
-
-        bars[distrib[0]].fillColor = targetCol
-        bars[distrib[1]].fillColor = nonTargetCol
-        bars[distrib[2]].fillColor = targetColors.pop()
-        bars[distrib[3]].fillColor = targetColors.pop()
+        t = random.randint(0,1)
+        bars[distrib[0]].fillColor = targetColors[t]
+        bars[distrib[1]].fillColor = targetColors[1-t]
+        bars[distrib[2]].fillColor = targetColors[2]
+        bars[distrib[3]].fillColor = targetColors[3]
 
     # Determine target bar
     targetBar = bars[thisTargetLoc-1]

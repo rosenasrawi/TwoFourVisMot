@@ -139,7 +139,7 @@ def presentStim():
 
 """ Present response dial """
 
-def presentResponse(targetCol):
+def presentResponse(targetCol, dialType):
 
     # Reset
     kb.clearEvents()
@@ -151,8 +151,12 @@ def presentResponse(targetCol):
 
     # Trial settings
     fixCross.lineColor = targetCol
-    turnUpper.pos = upper_turnUpper             # Dial circles in the correct position
-    turnLower.pos = upper_turnLower
+    if dialType == 'U':
+        turnUpper.pos = upper_turnUpper             # Dial circles in the upper positions
+        turnLower.pos = upper_turnLower
+    elif dialType == 'R':
+        turnUpper.pos = right_turnUpper             # Dial circles in the upper positions
+        turnLower.pos = right_turnLower
 
     # Response objects on
     fixCross.setAutoDraw(True)
@@ -209,7 +213,7 @@ def presentResponse(targetCol):
 
 """ Trial feedback """
 
-def presentTrialFeedback(clockwise, count, targetOri):
+def presentTrialFeedback(clockwise, count, targetOri, dialType):
 
     # Determine response orientation
     if clockwise == False: # Z press
@@ -217,7 +221,15 @@ def presentTrialFeedback(clockwise, count, targetOri):
     if clockwise == True: # M press
         reportOri = degrees(count * radStep)    
 
+    if dialType == 'R':
+        reportOri += 90
+        if targetOri < 0: targetOri += 180
+
     difference = abs(targetOri - round(reportOri))
+
+    if difference > 90:                 # difference can't be more than 90
+        difference -= 180
+        difference *= -1
 
     performance = round(100 - difference/90 * 100)
     feedbackText.text = str(performance)

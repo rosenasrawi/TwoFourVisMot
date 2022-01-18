@@ -1,6 +1,5 @@
 """ Import packages"""
 
-from json import load
 from psychopy import core, event
 from math import degrees, cos, sin
 from statistics import mean
@@ -24,6 +23,7 @@ def turnPositionsCircle(turnUpperPos, turnLowerPos, thisTurn):
 """ Block specifics """
 
 def blockSpecs():
+
     trialTypes = list(range(16)) #; random.shuffle(trialTypes)
     targetColors = barColors.copy()
     random.shuffle(targetColors)
@@ -33,6 +33,7 @@ def blockSpecs():
 """ Precue: dialtype"""
 
 def presentPrecueDial(dialType):
+
     oris = ['L','R','L','R','L','R']
     random.shuffle(oris)
     precueTextDial.setAutoDraw(True)
@@ -43,7 +44,6 @@ def presentPrecueDial(dialType):
         elif i == 'R': ori = random.randint(oriRangeRight[0], oriRangeRight[1])
         practiceBar.ori = ori
         practiceBar.fillColor = random.choice(barColors)
-        practiceBar.opacity = 0.5
 
         practiceBar.setAutoDraw(True)
         clockwise, count = presentResponse(fixColor, dialType)
@@ -99,6 +99,7 @@ def presentPrecueLoad(loadType, targetColors):
 """ Trial specifics """
 
 def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
+
     bars = [leftBarTop, rightBarTop, leftBarBot, rightBarBot]
 
     # Bar orientations
@@ -266,4 +267,38 @@ def presentTrialFeedback(clockwise, count, targetOri, dialType):
         mywin.flip()
 
     fixCross.setAutoDraw(False)
-    feedbackText.setAutoDraw(False)      
+    feedbackText.setAutoDraw(False)   
+
+    return performance   
+
+
+""" Block feedback """
+
+def presentBlockFeedback(performanceTrials):
+
+    performanceBlock = round(mean(performanceTrials))
+    blockFeedbackPerformanceText.text = str(performanceBlock) + "% correct"
+
+    blockFeedbackText.draw()
+    blockFeedbackPerformanceText.draw()
+    space2continue.draw()
+
+    mywin.flip()
+    event.waitKeys(keyList = 'space')        
+  
+""" Block start """
+
+def presentBlockStart(thisBlockNum, numBlocks):
+
+    blockStartText.text = "Press [space] to start block " + str(thisBlockNum) + "/" + str(numBlocks)
+    blockStartText.draw()
+    mywin.flip()
+    event.waitKeys(keyList = 'space')       
+
+""" Task end """
+
+def presentTaskEnd():
+    
+    taskEndText.draw()
+    mywin.flip()
+    event.waitKeys(keyList = 'space')    

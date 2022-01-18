@@ -1,22 +1,37 @@
-""" Import packages"""
-
 """ Import other task scripts """
+
 from functions import *
 
+""" Prepare task """
+
+random.shuffle(conditionOrder)
+
 """ Prepare block """
-loadType = 4; dialType = 'R'
-trialTypes, targetColors = blockSpecs()
-presentPrecueDial(dialType)
-presentPrecueLoad(loadType, targetColors)
 
-""" Run trials """
+for block in conditionOrder:
+    thisBlockNum += 1
+    presentBlockStart(thisBlockNum, numBlocks)
 
-for i in trialTypes:
-    thisItemConstel = itemConstels[i]
-    thisTargetLoc = targetLocs[i]
+    loadType = loadTypes[block]; dialType = dialTypes[block]
+    trialTypes, targetColors = blockSpecs()
+    presentPrecueDial(dialType)
+    presentPrecueLoad(loadType, targetColors)
 
-    targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
-    presentStim()
-    clockwise, count = presentResponse(targetCol, dialType)
-    presentTrialFeedback(clockwise, count, targetOri, dialType)
+    """ Run trials """
 
+    performanceTrials = []
+
+    for trial in trialTypes:
+        thisItemConstel = itemConstels[trial]
+        thisTargetLoc = targetLocs[trial]
+
+        targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
+        presentStim()
+        clockwise, count = presentResponse(targetCol, dialType)
+        performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
+
+        performanceTrials.append(performance)
+
+    presentBlockFeedback(performanceTrials)
+
+presentTaskEnd()

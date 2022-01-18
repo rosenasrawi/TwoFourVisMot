@@ -173,7 +173,7 @@ precueColors2b =  visual.TextStim(
 precueTextDial = visual.TextStim(
     win = mywin, 
     font = textFont,
-    text = "Practice turning the response dial for this block:",
+    text = "Response dial this block:",
     color = fontColor,
     pos = [0,2*barSize[1]],
     height = fontSizePreCue)
@@ -181,7 +181,7 @@ precueTextDial = visual.TextStim(
 precueTextDialButtons = visual.TextStim(
     win = mywin, 
     font = textFont,
-    text = "Press and hold: \n \n \n [Z] to turn counterclockwise \n [M] to turn clockwise",
+    text = "Press and hold: \n \n [Z] to turn counterclockwise \n [M] to turn clockwise",
     color = fontColor,
     pos = [0,-2*barSize[1]],
     height = fontSizePreCue)
@@ -195,3 +195,41 @@ feedbackText = visual.TextStim(
     color = fontColor,
     pos = [0,2*fixSize],
     height = fontSizeFeedback)
+
+""" Feedback: block """
+
+blockFeedbackText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "Performance this block:",
+    color = fontColor,
+    pos = [0,2*barSize[1]],
+    height = fontSizePreCue)
+
+blockFeedbackPerformanceText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = '',
+    color = fontColor,
+    pos = [0,0],
+    height = fontSizePreCue)    
+
+""" Block start """
+
+blockStartText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = '',
+    color = fontColor,
+    pos = [0,0],
+    height = fontSizePreCue) 
+
+""" Task start & end """
+
+taskEndText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = 'You have completed the task, well done! \n \n Press [space] to close this window',
+    color = fontColor,
+    pos = [0,0],
+    height = fontSizePreCue)

@@ -65,8 +65,8 @@ fixColor = (300/510,300/510,300/510)                        # lightgrey
 
 # Timings
 fixTime = [int(monitorHZ/2), int(monitorHZ*8/10)]   # 500, 800 ms
-encodingTime = int(monitorHZ/2)                     # 500 ms
-delayTime = int(monitorHZ*2.5)                      # 2500 ms
+encodingTime = int(monitorHZ/4)                     # 500 ms
+delayTime = int(monitorHZ*2.25)                     # 2500 ms
 feedbackTime = int(monitorHZ/4)                     # 250 ms
 
 # Text
@@ -79,10 +79,14 @@ fontColor = fixColor                                # lightgrey
 itemConstels     = [1,1,1,1, 2,2,2,2, 3,3,3,3, 4,4,4,4]
 targetLocs       = [1,2,3,4, 1,2,3,4, 1,2,3,4, 1,2,3,4]
 
-# orientation of items, based on consteltype (1-4)
+# Orientation of items, based on consteltype (1-4)
 constelTypes = {1: ['R','L','R','L'], 2: ['L','L','R','R'], 3: ['L','R','L','R'], 4: ['R','R','L','L']}
 
-# color distribution load two, based on targetlocation (1-4)
+# Color distribution load two, based on targetlocation (1-4)
 colorDistrib = {1: [0,3,1,2], 2: [1,2,0,3], 3: [2,1,0,3], 4: [3,0,1,2]}
 
-
+# Conditions
+loadTypes = [2,4,2,4]
+dialTypes = ['U','U','R','R']
+conditionOrder = list(range(4))
+numBlocks = len(conditionOrder); thisBlockNum = 0

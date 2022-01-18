@@ -7,7 +7,7 @@ import itertools
 
 # Computer settings
 setting = 'home'
-screen = 'monitor'
+screen = 'laptop'
 
 if setting == 'home':
     if screen == 'laptop':
@@ -38,8 +38,8 @@ maxTurn = monitorHZ
 quarterCircle = 0.5*pi
 radStep = quarterCircle/maxTurn
 
-oriRangeLeft = [-85, -5]
-oriRangeRight = [5, 85]
+oriRangeLeft = [-80, -10]
+oriRangeRight = [10, 80]
 
 # Locations
 leftBarTopPos = [-int(3/deg_per_px), int(3/deg_per_px)]     # Left top

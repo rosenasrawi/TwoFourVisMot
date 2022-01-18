@@ -4,8 +4,9 @@
 from functions import *
 
 """ Prepare block """
-loadType = 2; dialType = 'R'
+loadType = 4; dialType = 'R'
 trialTypes, targetColors = blockSpecs()
+presentPrecueDial(dialType)
 presentPrecueLoad(loadType, targetColors)
 
 """ Run trials """

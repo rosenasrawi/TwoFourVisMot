@@ -61,6 +61,13 @@ rightBarBot = visual.Rect(
     height = barSize[1],
     pos = rightBarBotPos)
 
+practiceBar = visual.Rect(
+    win = mywin,
+    units = "pix",
+    width = barSize[0],
+    height = barSize[1],
+    pos = fixPos)
+
 """ Response dial """
 
 responseCircle = visual.Circle(
@@ -88,14 +95,8 @@ turnLower = visual.Circle(
 
 """ Text """
 
-feedbackText = visual.TextStim(
-    win = mywin, 
-    font = textFont,
-    text = '',
-    color = fontColor,
-    pos = [0,2*fixSize],
-    height = fontSizeFeedback)
-    
+""" Instructive """
+
 space2continue = visual.TextStim(
     win = mywin, 
     font = textFont,
@@ -104,9 +105,8 @@ space2continue = visual.TextStim(
     pos = [0,-2*barSize[1]],
     height = fontSizePreCue)
 
-# Precues
+""" Precue: loadtype"""
 
-# Load
 precueTextColor = visual.TextStim(
     win = mywin, 
     font = textFont,
@@ -154,7 +154,6 @@ precueColors4d = visual.TextStim(
     height = fontSizePreCue)
 
 # On two sides in load 2
-
 precueColors2a = visual.TextStim(
     win = mywin, 
     font = textFont,
@@ -168,3 +167,31 @@ precueColors2b =  visual.TextStim(
     text = "",
     pos = rightBarPos,
     height = fontSizePreCue)
+
+""" Precue: dialtype"""
+
+precueTextDial = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "Practice turning the response dial for this block:",
+    color = fontColor,
+    pos = [0,2*barSize[1]],
+    height = fontSizePreCue)
+
+precueTextDialButtons = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = "Press and hold: \n \n \n [Z] to turn counterclockwise \n [M] to turn clockwise",
+    color = fontColor,
+    pos = [0,-2*barSize[1]],
+    height = fontSizePreCue)
+
+""" Feedback: trial """
+
+feedbackText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = '',
+    color = fontColor,
+    pos = [0,2*fixSize],
+    height = fontSizeFeedback)

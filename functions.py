@@ -30,6 +30,31 @@ def blockSpecs():
 
     return trialTypes, targetColors
 
+""" Precue: dialtype"""
+
+def presentPrecueDial(dialType):
+    oris = ['L','R','L','R','L','R']
+    random.shuffle(oris)
+    precueTextDial.setAutoDraw(True)
+    precueTextDialButtons.setAutoDraw(True)
+
+    for i in oris:
+        if i == 'L': ori = random.randint(oriRangeLeft[0], oriRangeLeft[1])
+        elif i == 'R': ori = random.randint(oriRangeRight[0], oriRangeRight[1])
+        practiceBar.ori = ori
+        practiceBar.fillColor = random.choice(barColors)
+        practiceBar.opacity = 0.5
+
+        practiceBar.setAutoDraw(True)
+        clockwise, count = presentResponse(fixColor, dialType)
+        practiceBar.setAutoDraw(False)
+        presentTrialFeedback(clockwise,count,practiceBar.ori, dialType)
+    
+    precueTextDial.setAutoDraw(False)
+    precueTextDialButtons.setAutoDraw(False)
+
+""" Precue: loadtype"""
+
 def presentPrecueLoad(loadType, targetColors):
 
     if loadType == 4:
@@ -65,7 +90,7 @@ def presentPrecueLoad(loadType, targetColors):
         precueColors2b.draw()
 
     precueTextColor.draw()
-    precueColors0.draw()
+    fixCross.draw()
     space2continue.draw()
 
     mywin.flip()

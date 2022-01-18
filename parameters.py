@@ -42,13 +42,13 @@ oriRangeLeft = [-85, -5]
 oriRangeRight = [5, 85]
 
 # Locations
-leftBarTopPos = [-int(4/deg_per_px), int(3/deg_per_px)]     # Left top
-rightBarTopPos = [int(4/deg_per_px), int(3/deg_per_px)]     # Right top
-leftBarBotPos = [-int(4/deg_per_px), -int(3/deg_per_px)]    # Left bottom
-rightBarBotPos = [int(4/deg_per_px), -int(3/deg_per_px)]    # Right bottom
+leftBarTopPos = [-int(3/deg_per_px), int(3/deg_per_px)]     # Left top
+rightBarTopPos = [int(3/deg_per_px), int(3/deg_per_px)]     # Right top
+leftBarBotPos = [-int(3/deg_per_px), -int(3/deg_per_px)]    # Left bottom
+rightBarBotPos = [int(3/deg_per_px), -int(3/deg_per_px)]    # Right bottom
 
-leftBarPos = [-int(4/deg_per_px), 0]
-rightBarPos = [int(4/deg_per_px), 0] 
+leftBarPos = [-int(3/deg_per_px), 0]
+rightBarPos = [int(3/deg_per_px), 0] 
 
 fixPos = [0,0]
 

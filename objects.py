@@ -233,3 +233,4 @@ taskEndText = visual.TextStim(
     color = fontColor,
     pos = [0,0],
     height = fontSizePreCue)
+    

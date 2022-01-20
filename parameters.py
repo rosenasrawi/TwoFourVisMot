@@ -7,9 +7,10 @@ import itertools
 
 # Computer settings
 setting = 'home'
-screen = 'laptop'
+screen = 'monitor'
 
 if setting == 'home':
+    dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'
     if screen == 'laptop':
         monitorHZ = 60
         monitorSize = [1536,960]
@@ -19,7 +20,6 @@ if setting == 'home':
         monitorSize = [2560,1440]
         height = 35; distance = 70; vertResolution = 2560 
 
-        dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'
 elif setting == 'lab':
     monitorHZ = 239
     monitorSize = [1920,1080]

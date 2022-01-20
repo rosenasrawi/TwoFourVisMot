@@ -1,12 +1,12 @@
 """ Import other task scripts """
 
-from functions import *
 from logfile import *
+filename, header = newLogfile()
+from functions import *
 
 """ Prepare task """
 
 random.shuffle(conditionOrder)
-filename, header = newLogfile()
 
 """ Prepare block """
 

@@ -49,7 +49,7 @@ def presentPrecueDial(dialType):
         practiceBar.fillColor = random.choice(barColors)
 
         practiceBar.setAutoDraw(True)
-        clockwise, count = presentResponse(fixColor, dialType)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType)
         practiceBar.setAutoDraw(False)
         presentTrialFeedback(clockwise,count,practiceBar.ori, dialType)
     

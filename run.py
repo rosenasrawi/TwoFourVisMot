@@ -1,19 +1,21 @@
 """ Import other task scripts """
 
 from functions import *
+from logfile import *
 
 """ Prepare task """
 
 random.shuffle(conditionOrder)
+filename, header = newLogfile()
 
 """ Prepare block """
 
 for block in conditionOrder:
-    thisBlockNum += 1
-    presentBlockStart(thisBlockNum, numBlocks)
+    # Blockspecs
+    loadType, dialType, trialTypes, targetColors, thisBlockNum = blockSpecs(block, thisBlockNum)
 
-    loadType = loadTypes[block]; dialType = dialTypes[block]
-    trialTypes, targetColors = blockSpecs()
+    # Start block
+    presentBlockStart(thisBlockNum, numBlocks)
     presentPrecueDial(dialType)
     presentPrecueLoad(loadType, targetColors)
 
@@ -21,16 +23,23 @@ for block in conditionOrder:
 
     performanceTrials = []
 
-    for trial in trialTypes:
-        thisItemConstel = itemConstels[trial]
-        thisTargetLoc = targetLocs[trial]
-
+    for trialType in trialTypes:
+        # Trial specs
+        thisItemConstel = itemConstels[trialType]; thisTargetLoc = targetLocs[trialType]
         targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
-        presentStim()
-        clockwise, count = presentResponse(targetCol, dialType)
-        performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
-
+        
+        # Start trial
+        thisFixTime = presentStim()
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType)
+        reportOri, difference, performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
         performanceTrials.append(performance)
+
+        # Log trial data
+        trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
+                                    thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
+                                    performance, thisFixTime, probeTime, pressTime, releaseTime,
+                                    dialType, loadType, trialType)
+        addTrialLogfile(filename, header, trialData)
 
     presentBlockFeedback(performanceTrials)
 

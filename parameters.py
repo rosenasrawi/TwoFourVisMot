@@ -18,6 +18,8 @@ if setting == 'home':
         monitorHZ = 60
         monitorSize = [2560,1440]
         height = 35; distance = 70; vertResolution = 2560 
+
+        dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'
 elif setting == 'lab':
     monitorHZ = 239
     monitorSize = [1920,1080]

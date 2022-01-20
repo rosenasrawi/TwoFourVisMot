@@ -1,5 +1,6 @@
 """ Import packages"""
 
+import this
 from psychopy import core, event
 from math import degrees, cos, sin
 from statistics import mean
@@ -22,13 +23,15 @@ def turnPositionsCircle(turnUpperPos, turnLowerPos, thisTurn):
 
 """ Block specifics """
 
-def blockSpecs():
+def blockSpecs(block, thisBlockNum):
 
-    trialTypes = list(range(16)) #; random.shuffle(trialTypes)
+    thisBlockNum += 1
+    loadType = loadTypes[block]; dialType = dialTypes[block]
+    trialTypes = list(range(16)); random.shuffle(trialTypes)
     targetColors = barColors.copy()
     random.shuffle(targetColors)
 
-    return trialTypes, targetColors
+    return loadType, dialType, trialTypes, targetColors, thisBlockNum
 
 """ Precue: dialtype"""
 
@@ -190,11 +193,14 @@ def presentResponse(targetCol, dialType):
     turnLower.setAutoDraw(True) 
     turnUpper.setAutoDraw(True) 
 
+    probeTime = time.time()
+
     mywin.flip()
 
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
 
     if 'z' in key_press:
+        pressTime = time.time()
         clockwise = False
 
         while key_release == [] and count < maxTurn:
@@ -210,6 +216,7 @@ def presentResponse(targetCol, dialType):
             mywin.flip()
 
     elif 'm' in key_press:
+        pressTime = time.time()
         clockwise = True
 
         while key_release == [] and count < maxTurn:
@@ -225,7 +232,8 @@ def presentResponse(targetCol, dialType):
 
     elif 'q' in key_press:
         core.quit()
-        
+    
+    releaseTime = time.time()
     key_press = []
     key_release = []
 
@@ -235,7 +243,7 @@ def presentResponse(targetCol, dialType):
     turnUpper.setAutoDraw(False)
     fixCross.setAutoDraw(False)
 
-    return clockwise, count
+    return clockwise, count, probeTime, pressTime, releaseTime
 
 """ Trial feedback """
 
@@ -253,7 +261,7 @@ def presentTrialFeedback(clockwise, count, targetOri, dialType):
 
     difference = abs(targetOri - round(reportOri))
 
-    if difference > 90:                 # difference can't be more than 90
+    if difference > 90: # difference can't be more than 90
         difference -= 180
         difference *= -1
 
@@ -269,7 +277,7 @@ def presentTrialFeedback(clockwise, count, targetOri, dialType):
     fixCross.setAutoDraw(False)
     feedbackText.setAutoDraw(False)   
 
-    return performance   
+    return reportOri, difference, performance
 
 
 """ Block feedback """

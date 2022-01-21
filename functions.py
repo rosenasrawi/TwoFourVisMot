@@ -197,22 +197,16 @@ def presentResponse(targetCol, dialType, practice):
     mywin.flip()
 
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
-
+    pressTime = time.time()
     if not practice:
         responseCircle.setAutoDraw(True) 
         turnLower.setAutoDraw(True) 
         turnUpper.setAutoDraw(True) 
 
     if 'z' in key_press:
-        pressTime = time.time()
-        clockwise = False
-        key = 'z'
-        thisTurn = -radStep
+        clockwise = False; key = 'z'; thisTurn = -radStep
     elif 'm' in key_press:
-        pressTime = time.time()
-        clockwise = True
-        key = 'm'
-        thisTurn = radStep
+        clockwise = True; key = 'm'; thisTurn = radStep
     elif 'q' in key_press:
         core.quit()
 

@@ -7,7 +7,7 @@ import itertools
 
 # Computer settings
 setting = 'home'
-screen = 'laptop'
+screen = 'monitor'
 
 if setting == 'home':
     dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'

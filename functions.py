@@ -36,7 +36,6 @@ def blockSpecs(block, thisBlockNum):
 """ Precue: dialtype"""
 
 def presentPrecueDial(dialType):
-
     oris = ['L','R','L','R','L','R']
     random.shuffle(oris)
     precueTextDial.setAutoDraw(True)
@@ -49,7 +48,7 @@ def presentPrecueDial(dialType):
         practiceBar.fillColor = random.choice(barColors)
 
         practiceBar.setAutoDraw(True)
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType, True)
         practiceBar.setAutoDraw(False)
         presentTrialFeedback(clockwise,count,practiceBar.ori, dialType)
     
@@ -168,7 +167,7 @@ def presentStim():
 
 """ Present response dial """
 
-def presentResponse(targetCol, dialType):
+def presentResponse(targetCol, dialType, practice):
 
     # Reset
     kb.clearEvents()
@@ -188,50 +187,46 @@ def presentResponse(targetCol, dialType):
         turnLower.pos = right_turnLower
 
     # Response objects on
-    fixCross.setAutoDraw(True)
-    responseCircle.setAutoDraw(True) 
-    turnLower.setAutoDraw(True) 
-    turnUpper.setAutoDraw(True) 
-
+    if not practice: fixCross.setAutoDraw(True)
+    if practice:
+        responseCircle.setAutoDraw(True) 
+        turnLower.setAutoDraw(True) 
+        turnUpper.setAutoDraw(True) 
     probeTime = time.time()
 
     mywin.flip()
 
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
 
+    if not practice:
+        responseCircle.setAutoDraw(True) 
+        turnLower.setAutoDraw(True) 
+        turnUpper.setAutoDraw(True) 
+
     if 'z' in key_press:
         pressTime = time.time()
         clockwise = False
-
-        while key_release == [] and count < maxTurn:
-            
-            key_release = kb.getKeys(keyList = ['z'], waitRelease = True, clear = True)
-
-            positions = turnPositionsCircle(turnUpper.pos, turnLower.pos, thisTurn = -radStep)
-            turnUpper.pos = positions[0]
-            turnLower.pos = positions[1]
-
-            count += 1 # one step updated
-
-            mywin.flip()
-
+        key = 'z'
+        thisTurn = -radStep
     elif 'm' in key_press:
         pressTime = time.time()
         clockwise = True
-
-        while key_release == [] and count < maxTurn:
-
-            key_release = kb.getKeys(keyList = ['m'], waitRelease = True, clear = True)
-
-            positions = turnPositionsCircle(turnUpper.pos, turnLower.pos, thisTurn = radStep)
-            turnUpper.pos = positions[0]
-            turnLower.pos = positions[1]  
-
-            count += 1 # one step updated
-            mywin.flip()
-
+        key = 'm'
+        thisTurn = radStep
     elif 'q' in key_press:
         core.quit()
+
+    while key_release == [] and count < maxTurn:
+        
+        key_release = kb.getKeys(keyList = [key], waitRelease = True, clear = True)
+
+        positions = turnPositionsCircle(turnUpper.pos, turnLower.pos, thisTurn = thisTurn)
+        turnUpper.pos = positions[0]
+        turnLower.pos = positions[1]
+
+        count += 1 # one step updated
+
+        mywin.flip()
     
     releaseTime = time.time()
     key_press = []

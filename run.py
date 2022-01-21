@@ -30,7 +30,7 @@ for block in conditionOrder:
         
         # Start trial
         thisFixTime = presentStim()
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False)
         reportOri, difference, performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
         performanceTrials.append(performance)
 

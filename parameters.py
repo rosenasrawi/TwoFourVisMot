@@ -7,7 +7,7 @@ import itertools
 
 # Computer settings
 setting = 'home'
-screen = 'monitor'
+screen = 'laptop'
 
 if setting == 'home':
     dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'
@@ -67,8 +67,8 @@ fixColor = (300/510,300/510,300/510)                        # lightgrey
 
 # Timings
 fixTime = [int(monitorHZ/2), int(monitorHZ*8/10)]   # 500, 800 ms
-encodingTime = int(monitorHZ/4)                     # 500 ms
-delayTime = int(monitorHZ*2.25)                     # 2500 ms
+encodingTime = int(monitorHZ/4)                     # 250 ms
+delayTime = int(monitorHZ*2.25)                     # 2250 ms
 feedbackTime = int(monitorHZ/4)                     # 250 ms
 
 # Text

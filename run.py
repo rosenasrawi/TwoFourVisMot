@@ -6,13 +6,13 @@ from functions import *
 
 """ Prepare task """
 
-random.shuffle(conditionOrder)
+dialTypes, loadTypes, trialTypes, numBlocks, thisBlockNum = taskSpecs()
 
 """ Prepare block """
 
-for block in conditionOrder:
+for block in range(len(dialTypes)):
     # Blockspecs
-    loadType, dialType, trialTypes, targetColors, thisBlockNum = blockSpecs(block, thisBlockNum)
+    loadType, dialType, trialTypes, targetColors, thisBlockNum = blockSpecs(block, thisBlockNum, loadTypes, dialTypes, trialTypes)
 
     # Start block
     presentBlockStart(thisBlockNum, numBlocks)

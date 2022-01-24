@@ -21,16 +21,36 @@ def turnPositionsCircle(turnUpperPos, turnLowerPos, thisTurn):
     
     return turnUpperPos, turnLowerPos
 
+def taskSpecs():
+
+    dialTypes = []; loadTypes = []
+    
+    D = ['U','R']; L = [2,4]
+    random.shuffle(D)
+
+    for d in range(len(D)):
+        dialTypes += [D[d]]*len(L)
+        random.shuffle(L)
+        loadTypes += L
+
+    trialTypes = list(range(16))
+
+    numBlocks = len(dialTypes); 
+    thisBlockNum = 0
+
+    return dialTypes, loadTypes, trialTypes, numBlocks, thisBlockNum
+
 """ Block specifics """
 
-def blockSpecs(block, thisBlockNum):
+def blockSpecs(block, thisBlockNum, loadTypes, dialTypes, trialTypes):
 
     thisBlockNum += 1
     loadType = loadTypes[block]; dialType = dialTypes[block]
-    trialTypes = list(range(16)); random.shuffle(trialTypes)
+
     targetColors = barColors.copy()
     random.shuffle(targetColors)
-
+    random.shuffle(trialTypes)
+    
     return loadType, dialType, trialTypes, targetColors, thisBlockNum
 
 """ Precue: dialtype"""

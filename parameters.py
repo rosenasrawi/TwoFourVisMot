@@ -92,3 +92,4 @@ loadTypes = [2,4,2,4]
 dialTypes = ['U','U','R','R']
 conditionOrder = list(range(4))
 numBlocks = len(conditionOrder); thisBlockNum = 0
+trialTypes = list(range(16))

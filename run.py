@@ -1,4 +1,5 @@
 """ Input on what task to run """
+
 taskInput = input('Do you wish to run the main task (Y/N)? ')
 if taskInput == 'Y': isTask = True
 else: isTask = False
@@ -17,6 +18,7 @@ dialTypes, loadTypes, trialTypes, numBlocks, thisBlockNum = taskSpecs()
 """ Prepare block """
 
 for block in range(len(dialTypes)):
+    myTrackCalibration()
     # Blockspecs
     loadType, dialType, trialTypes, targetColors, thisBlockNum = blockSpecs(block, thisBlockNum, loadTypes, dialTypes, trialTypes)
 

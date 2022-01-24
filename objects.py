@@ -93,6 +93,24 @@ turnLower = visual.Circle(
     fillColor = backgroundColor,
     lineColor = fixColor)
 
+""" Eye-tracking calibration """
+
+eyecalibrationCircle = visual.Circle(
+    win = mywin,
+    radius = miniCircleRadius,
+    edges = circleEdges,
+    lineWidth = LineWidth,
+    lineColor = fixColor,
+    fillColor = fixColor)
+
+eyecalibrationCircleMini = visual.Circle(
+    win = mywin,
+    radius = miniCircleRadius/3,
+    edges = circleEdges,
+    lineWidth = LineWidth,
+    lineColor = eyeCalibMini,
+    fillColor = eyeCalibMini)
+
 """ Text """
 
 """ Instructive """
@@ -234,3 +252,18 @@ taskEndText = visual.TextStim(
     pos = [0,0],
     height = fontSizePreCue)
     
+eyecalibrationText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = 'Please follow the moving dot:',
+    color = fontColor,
+    pos = [0,barSize[0]],
+    height = fontSizePreCue)
+
+eyecalibrationCounterText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = '',
+    color = fontColor,
+    pos = [0,-barSize[0]],
+    height = fontSizePreCue)

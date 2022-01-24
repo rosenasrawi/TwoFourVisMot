@@ -287,7 +287,40 @@ def presentTrialFeedback(clockwise, count, targetOri, dialType):
 
     return reportOri, difference, performance
 
+""" Eye calibration screen """
 
+def myTrackCalibration():
+
+    # Please follow the dot in 3, 2, 1:
+    eyecalibrationText.setAutoDraw(True)
+    eyecalibrationCounterText.setAutoDraw(True)
+
+    counterText = ['3', '', '2', '', '1', '']
+    for cT in counterText:
+        eyecalibrationCounterText.text = cT
+        for i in range(counterTime): # 500 ms
+            mywin.flip()
+
+    eyecalibrationText.setAutoDraw(False)
+    eyecalibrationCounterText.setAutoDraw(False)
+
+    # Dots start to appear
+    eyecalibrationCircle.setAutoDraw(True)
+    eyecalibrationCircleMini.setAutoDraw(True)
+
+    posOrder = list(range(len(allPositions)))
+    random.shuffle(posOrder)
+
+    for pos in posOrder:
+        eyecalibrationCircle.pos = list(allPositions[pos])
+        eyecalibrationCircleMini.pos = list(allPositions[pos])
+
+        for i in range(calibrationTime): # 1500 ms
+            mywin.flip()
+
+    eyecalibrationCircle.setAutoDraw(False)
+    eyecalibrationCircleMini.setAutoDraw(False)   
+               
 """ Block feedback """
 
 def presentBlockFeedback(performanceTrials):

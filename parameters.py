@@ -64,12 +64,15 @@ backgroundColor = (50/510, 50/510, 50/510)                  # darkdrey
 barColors = ["#C2A025", "#3843C2", "#2FC259", "#CF3C3C"]
 barColorNames = ['YELLOW', 'BLUE', 'GREEN', 'RED']       
 fixColor = (300/510,300/510,300/510)                        # lightgrey
+eyeCalibMini = (1/510, 1/510, 1/510)
 
 # Timings
 fixTime = [int(monitorHZ/2), int(monitorHZ*8/10)]   # 500, 800 ms
 encodingTime = int(monitorHZ/4)                     # 250 ms
 delayTime = int(monitorHZ*2.25)                     # 2250 ms
 feedbackTime = int(monitorHZ/4)                     # 250 ms
+counterTime = int(monitorHZ/2)                      # 500 ms
+calibrationTime = int(monitorHZ)
 
 # Text
 textFont = 'Helvetica'
@@ -86,3 +89,8 @@ constelTypes = {1: ['R','L','R','L'], 2: ['L','L','R','R'], 3: ['L','R','L','R']
 
 # Color distribution load two, based on targetlocation (1-4)
 colorDistrib = {1: [0,3,1,2], 2: [1,2,0,3], 3: [2,1,0,3], 4: [3,0,1,2]}
+
+# Eye calibration locations
+xPositions = [-barSize[1], 0, barSize[1]]
+yPositions = [barSize[1], 0, -barSize[1]]
+allPositions = list(itertools.product(xPositions, yPositions)) # 9 times x,y coordinates

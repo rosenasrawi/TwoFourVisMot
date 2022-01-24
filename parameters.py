@@ -86,10 +86,3 @@ constelTypes = {1: ['R','L','R','L'], 2: ['L','L','R','R'], 3: ['L','R','L','R']
 
 # Color distribution load two, based on targetlocation (1-4)
 colorDistrib = {1: [0,3,1,2], 2: [1,2,0,3], 3: [2,1,0,3], 4: [3,0,1,2]}
-
-# Conditions
-loadTypes = [2,4,2,4]
-dialTypes = ['U','U','R','R']
-conditionOrder = list(range(4))
-numBlocks = len(conditionOrder); thisBlockNum = 0
-trialTypes = list(range(16))

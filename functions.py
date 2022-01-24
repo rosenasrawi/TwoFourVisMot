@@ -1,6 +1,5 @@
 """ Import packages"""
 
-import this
 from psychopy import core, event
 from math import degrees, cos, sin
 from statistics import mean

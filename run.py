@@ -1,7 +1,13 @@
+""" Input on what task to run """
+taskInput = input('Do you wish to run the main task (Y/N)? ')
+if taskInput == 'Y': isTask = True
+else: isTask = False
+
 """ Import other task scripts """
 
-from logfile import *
-filename, header = newLogfile()
+if isTask:
+    from logfile import *
+    filename, header = newLogfile()
 from functions import *
 
 """ Prepare task """
@@ -35,11 +41,12 @@ for block in range(len(dialTypes)):
         performanceTrials.append(performance)
 
         # Log trial data
-        trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
-                                    thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
-                                    performance, thisFixTime, probeTime, pressTime, releaseTime,
-                                    dialType, loadType, trialType)
-        addTrialLogfile(filename, header, trialData)
+        if isTask:
+            trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
+                                        thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
+                                        performance, thisFixTime, probeTime, pressTime, releaseTime,
+                                        dialType, loadType, trialType)
+            addTrialLogfile(filename, header, trialData)
 
     presentBlockFeedback(performanceTrials)
 

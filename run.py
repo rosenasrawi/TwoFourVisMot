@@ -1,8 +1,9 @@
 """ Input on what task to run """
 
 taskInput = input('Do you wish to run the main task (Y/N)? ')
-if taskInput == 'Y': isTask = True
-else: isTask = False
+if taskInput == 'Y' or taskInput == 'y': isTask = True
+elif taskInput == 'N' or taskInput == 'n': isTask = False
+else: print('Error: incorrect input value (not Y or N), please try running the script again.')
 
 """ Import other task scripts """
 
@@ -13,12 +14,13 @@ from functions import *
 
 """ Prepare task """
 
-dialTypes, loadTypes, trialTypes, numBlocks, thisBlockNum = taskSpecs()
+dialTypes, loadTypes, trialTypes, numBlocks, thisBlockNum = taskSpecs(isTask)
 
 """ Prepare block """
 
 for block in range(len(dialTypes)):
-    myTrackCalibration()
+    # if isTask:
+    #     myTrackCalibration()
     # Blockspecs
     loadType, dialType, trialTypes, targetColors, thisBlockNum = blockSpecs(block, thisBlockNum, loadTypes, dialTypes, trialTypes)
 
@@ -47,7 +49,7 @@ for block in range(len(dialTypes)):
             trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
                                         thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
                                         performance, thisFixTime, probeTime, pressTime, releaseTime,
-                                        dialType, loadType, trialType)
+                                        dialType, loadType, trialType, thisBlockNum)
             addTrialLogfile(filename, header, trialData)
 
     presentBlockFeedback(performanceTrials)

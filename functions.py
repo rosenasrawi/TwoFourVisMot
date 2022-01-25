@@ -20,19 +20,23 @@ def turnPositionsCircle(turnUpperPos, turnLowerPos, thisTurn):
     
     return turnUpperPos, turnLowerPos
 
-def taskSpecs():
+def taskSpecs(isTask):
 
     dialTypes = []; loadTypes = []
-    
-    D = ['U','R']; L = [2,4]
-    random.shuffle(D)
-
-    for d in range(len(D)):
-        dialTypes += [D[d]]*len(L)
-        random.shuffle(L)
-        loadTypes += L
-
     trialTypes = list(range(16))
+    
+    if isTask:
+        dials = ['U', 'R', 'U', 'R']
+        loads = [2,4,2,4]
+        trialTypes *= 2
+    elif not isTask:
+        dials = ['U','R']; loads = [2,4]
+        random.shuffle(dials)
+
+    for d in range(len(dials)):
+        dialTypes += [dials[d]]*len(loads)
+        random.shuffle(loads)
+        loadTypes += loads
 
     numBlocks = len(dialTypes); 
     thisBlockNum = 0
@@ -136,15 +140,17 @@ def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
     # Bar colors
     if loadType == 4:       # Load four
         random.shuffle(targetColors) 
-        leftBarTop.fillColor = targetColors[0]; rightBarTop.fillColor = targetColors[1]
-        leftBarBot.fillColor = targetColors[2]; rightBarBot.fillColor = targetColors[3]
+        leftBarTop.fillColor = leftBarTop.name = targetColors[0]
+        rightBarTop.fillColor = rightBarTop.name = targetColors[1]
+        leftBarBot.fillColor = leftBarBot.name = targetColors[2]
+        rightBarBot.fillColor = rightBarBot.name = targetColors[3]
     elif loadType == 2:     # Load two
         distrib = colorDistrib[thisTargetLoc]
         t = random.randint(0,1)
-        bars[distrib[0]].fillColor = targetColors[t]
-        bars[distrib[1]].fillColor = targetColors[1-t]
-        bars[distrib[2]].fillColor = targetColors[2]
-        bars[distrib[3]].fillColor = targetColors[3]
+        bars[distrib[0]].fillColor = bars[distrib[0]].name = targetColors[t]
+        bars[distrib[1]].fillColor = bars[distrib[1]].name = targetColors[1-t]
+        bars[distrib[2]].fillColor = bars[distrib[2]].name = targetColors[2]
+        bars[distrib[3]].fillColor = bars[distrib[3]].name = targetColors[3]
 
     # Determine target bar
     targetBar = bars[thisTargetLoc-1]
@@ -179,14 +185,14 @@ def presentStim():
     leftBarBot.setAutoDraw(False)
     rightBarBot.setAutoDraw(False)
 
-    for i in range(delayTime):                # Memory delay
-        mywin.flip()
+    # for i in range(delayTime):                # Memory delay
+    #     mywin.flip()
 
     return thisFixTime
 
 """ Present response dial """
 
-def presentResponse(targetCol, dialType, practice):
+def presentResponse(targetCol, dialType, practiceDial):
 
     # Reset
     kb.clearEvents()
@@ -206,8 +212,8 @@ def presentResponse(targetCol, dialType, practice):
         turnLower.pos = right_turnLower
 
     # Response objects on
-    if not practice: fixCross.setAutoDraw(True)
-    if practice:
+    if not practiceDial: fixCross.setAutoDraw(True)
+    if practiceDial:
         responseCircle.setAutoDraw(True) 
         turnLower.setAutoDraw(True) 
         turnUpper.setAutoDraw(True) 
@@ -217,7 +223,7 @@ def presentResponse(targetCol, dialType, practice):
 
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
     pressTime = time.time()
-    if not practice:
+    if not practiceDial:
         responseCircle.setAutoDraw(True) 
         turnLower.setAutoDraw(True) 
         turnUpper.setAutoDraw(True) 

@@ -41,7 +41,8 @@ def newLogfile():
               'responseDur',
               'dialType', 
               'loadType', 
-              'trialType']
+              'trialType',
+              'blockNum']
 
     with open(filename, mode = 'w') as datafile:
         writer = csv.DictWriter(datafile, delimiter = ',', fieldnames = header)
@@ -54,21 +55,21 @@ def newLogfile():
 def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
                     thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
                     performance, thisFixTime, probeTime, pressTime, releaseTime,
-                    dialType, loadType, trialType):
+                    dialType, loadType, trialType, thisBlockNum):
 
     # Create trialdata
     trialData = {'leftBarTopOri':   leftBarTop.ori,                 
                  'rightBarTopOri':  rightBarTop.ori,
                  'leftBarBotOri':   leftBarBot.ori, 
                  'rightBarBotOri':  rightBarBot.ori,
-                 'leftBarTopCol':   leftBarTop.fillColor,                 
-                 'rightBarTopCol':  rightBarTop.fillColor,
-                 'leftBarBotCol':   leftBarBot.fillColor, 
-                 'rightBarBotCol':  rightBarBot.fillColor,               
+                 'leftBarTopCol':   leftBarTop.name,                 
+                 'rightBarTopCol':  rightBarTop.name,
+                 'leftBarBotCol':   leftBarBot.name, 
+                 'rightBarBotCol':  rightBarBot.name,               
                  'targetCol':       targetColors[0], 
                  'targetLocation':  thisTargetLoc,
-                 'targetOri':       targetOri,
-                 'reportOri':       reportOri,
+                 'targetOri':       round(targetOri),
+                 'reportOri':       round(reportOri),
                  'circleSteps':     count, 
                  'clockwise':       clockwise,
                  'difference':      difference, 
@@ -81,7 +82,8 @@ def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColo
                  'responseDur':     releaseTime - pressTime,
                  'dialType':        dialType, 
                  'loadType':        loadType, 
-                 'trialType':       trialType}
+                 'trialType':       trialType,
+                 'blockNum':        thisBlockNum}
 
     return trialData
 

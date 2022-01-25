@@ -26,13 +26,13 @@ def taskSpecs(isTask):
     trialTypes = list(range(16))
     
     if isTask:
-        dials = ['U', 'R', 'U', 'R']
+        dials = ['U', 'R']
         loads = [2,4,2,4]
-        trialTypes *= 2
+        trialTypes *= 4
     elif not isTask:
         dials = ['U','R']; loads = [2,4]
-        random.shuffle(dials)
-
+    
+    random.shuffle(dials)
     for d in range(len(dials)):
         dialTypes += [dials[d]]*len(loads)
         random.shuffle(loads)
@@ -114,6 +114,8 @@ def presentPrecueLoad(loadType, targetColors):
         precueColors2a.draw()
         precueColors2b.draw()
 
+    fixCross.lineColor = fixColor
+
     precueTextColor.draw()
     fixCross.draw()
     space2continue.draw()
@@ -160,6 +162,19 @@ def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
 
     return targetCol, targetOri
 
+""" Determine triggers """
+
+def trialTriggers(trialType, loadType, dialType):
+    
+    loadAdd = {2: 0, 4: 50}
+    dialAdd = {'U': 0, 'R': 100}
+
+    encTrig = trialType+1 + loadAdd[loadType] + dialAdd[dialType]
+    probeTrig = encTrig + 16
+    respTrig = encTrig + 32
+
+    return encTrig, probeTrig, respTrig
+
 """ Present main stimuli """
 
 def presentStim():
@@ -185,8 +200,8 @@ def presentStim():
     leftBarBot.setAutoDraw(False)
     rightBarBot.setAutoDraw(False)
 
-    # for i in range(delayTime):                # Memory delay
-    #     mywin.flip()
+    for i in range(delayTime):                # Memory delay
+        mywin.flip()
 
     return thisFixTime
 

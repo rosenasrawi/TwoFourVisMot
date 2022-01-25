@@ -42,7 +42,10 @@ def newLogfile():
               'dialType', 
               'loadType', 
               'trialType',
-              'blockNum']
+              'blockNum',
+              'encTrig',
+              'probeTrig', 
+              'respTrig']
 
     with open(filename, mode = 'w') as datafile:
         writer = csv.DictWriter(datafile, delimiter = ',', fieldnames = header)
@@ -55,7 +58,7 @@ def newLogfile():
 def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
                     thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
                     performance, thisFixTime, probeTime, pressTime, releaseTime,
-                    dialType, loadType, trialType, thisBlockNum):
+                    dialType, loadType, trialType, thisBlockNum, encTrig, probeTrig, respTrig):
 
     # Create trialdata
     trialData = {'leftBarTopOri':   leftBarTop.ori,                 
@@ -83,7 +86,10 @@ def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColo
                  'dialType':        dialType, 
                  'loadType':        loadType, 
                  'trialType':       trialType,
-                 'blockNum':        thisBlockNum}
+                 'blockNum':        thisBlockNum,
+                 'encTrig':         encTrig,
+                 'probeTrig':       probeTrig, 
+                 'respTrig':        respTrig}
 
     return trialData
 

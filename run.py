@@ -19,14 +19,15 @@ dialTypes, loadTypes, trialTypes, numBlocks, thisBlockNum = taskSpecs(isTask)
 """ Prepare block """
 
 for block in range(len(dialTypes)):
-    # if isTask:
-    #     myTrackCalibration()
     # Blockspecs
     loadType, dialType, trialTypes, targetColors, thisBlockNum = blockSpecs(block, thisBlockNum, loadTypes, dialTypes, trialTypes)
 
     # Start block
     presentBlockStart(thisBlockNum, numBlocks)
-    presentPrecueDial(dialType)
+
+    # Pre-cues
+    if block == 0 or block != 0 and dialType != dialTypes[block-1]:
+        presentPrecueDial(dialType)
     presentPrecueLoad(loadType, targetColors)
 
     """ Run trials """
@@ -34,6 +35,9 @@ for block in range(len(dialTypes)):
     performanceTrials = []
 
     for trialType in trialTypes:
+        if isTask: 
+            encTrig, probeTrig, respTrig = trialTriggers(trialType, loadType, dialType)
+
         # Trial specs
         thisItemConstel = itemConstels[trialType]; thisTargetLoc = targetLocs[trialType]
         targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
@@ -49,9 +53,12 @@ for block in range(len(dialTypes)):
             trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
                                         thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
                                         performance, thisFixTime, probeTime, pressTime, releaseTime,
-                                        dialType, loadType, trialType, thisBlockNum)
+                                        dialType, loadType, trialType, thisBlockNum, encTrig, probeTrig, respTrig)
             addTrialLogfile(filename, header, trialData)
 
     presentBlockFeedback(performanceTrials)
+    
+    if block != len(dialTypes)-1:
+        myTrackCalibration()
 
 presentTaskEnd()

@@ -43,8 +43,8 @@ for block in range(len(dialTypes)):
         targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
         
         # Start trial
-        thisFixTime = presentStim()
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False)
+        thisFixTime = presentStim(isTask, encTrig)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False, isTask, probeTrig, respTrig)
         reportOri, difference, performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
         performanceTrials.append(performance)
 

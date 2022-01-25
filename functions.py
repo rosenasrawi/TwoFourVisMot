@@ -71,7 +71,7 @@ def presentPrecueDial(dialType):
         practiceBar.fillColor = random.choice(barColors)
 
         practiceBar.setAutoDraw(True)
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType, True)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType, True, False, 0, 0)
         practiceBar.setAutoDraw(False)
         presentTrialFeedback(clockwise,count,practiceBar.ori, dialType)
     
@@ -177,7 +177,7 @@ def trialTriggers(trialType, loadType, dialType):
 
 """ Present main stimuli """
 
-def presentStim():
+def presentStim(isTask, encTrig):
 
     fixCross.lineColor = fixColor   
     fixCross.setAutoDraw(True)
@@ -192,8 +192,11 @@ def presentStim():
     leftBarBot.setAutoDraw(True)
     rightBarBot.setAutoDraw(True)
 
+    if isTask: mywin.callOnFlip(print, encTrig)
+
     for i in range(encodingTime):             # Encoding display
         mywin.flip()
+        if isTask and i == 2: print(0)
 
     leftBarTop.setAutoDraw(False)
     rightBarTop.setAutoDraw(False)
@@ -207,7 +210,7 @@ def presentStim():
 
 """ Present response dial """
 
-def presentResponse(targetCol, dialType, practiceDial):
+def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTrig):
 
     # Reset
     kb.clearEvents()
@@ -234,10 +237,17 @@ def presentResponse(targetCol, dialType, practiceDial):
         turnUpper.setAutoDraw(True) 
     probeTime = time.time()
 
+    if isTask: mywin.callOnFlip(print, probeTrig)
+
     mywin.flip()
+
+    if isTask: core.wait(2/monitorHZ); print(0)
 
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
     pressTime = time.time()
+
+    if isTask: print(respTrig); core.wait(2/monitorHZ); print(0)
+
     if not practiceDial:
         responseCircle.setAutoDraw(True) 
         turnLower.setAutoDraw(True) 

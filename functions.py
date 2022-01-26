@@ -177,14 +177,15 @@ def trialTriggers(trialType, loadType, dialType):
 
 """ Present main stimuli """
 
-def presentStim(isTask, encTrig):
+def presentStim(isTask, encTrig, portType, portEEG, tracker):
 
     fixCross.lineColor = fixColor   
     fixCross.setAutoDraw(True)
 
     thisFixTime = random.randint(fixTime[0], fixTime[1])
     
-    for i in range(thisFixTime):              # Fixation
+    # Fixation
+    for i in range(thisFixTime):
         mywin.flip()
     
     leftBarTop.setAutoDraw(True)
@@ -192,18 +193,29 @@ def presentStim(isTask, encTrig):
     leftBarBot.setAutoDraw(True)
     rightBarBot.setAutoDraw(True)
 
-    if isTask: mywin.callOnFlip(print, encTrig)
+    mywin.callOnFlip(print, encTrig)
 
-    for i in range(encodingTime):             # Encoding display
+    if isTask: 
+        mywin.callOnFlip(tracker.send_message, 'trig' + str(encTrig))
+        if portType == 'parallel':
+            mywin.callOnFlip(portEEG.setData, encTrig)
+        elif portType == 'serial':
+            portEEG.open()
+            mywin.callOnFlip(portEEG.write, encTrig.to_bytes(1, 'little'))        
+
+    # Encoding display
+    for i in range(encodingTime):
         mywin.flip()
-        if isTask and i == 2: print(0)
+        if isTask and i == 2 and portType == 'parellel': 
+            portEEG.setData(0)
 
     leftBarTop.setAutoDraw(False)
     rightBarTop.setAutoDraw(False)
     leftBarBot.setAutoDraw(False)
     rightBarBot.setAutoDraw(False)
 
-    for i in range(delayTime):                # Memory delay
+    # Memory delay
+    for i in range(delayTime):
         mywin.flip()
 
     return thisFixTime
@@ -214,11 +226,8 @@ def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTr
 
     # Reset
     kb.clearEvents()
-
-    count = 0 # positions not updated yet
-    clockwise = False
-    key_release = []
-    key_press = []
+    count = 0; clockwise = False
+    key_release = []; key_press = []
 
     # Trial settings
     fixCross.lineColor = targetCol
@@ -229,24 +238,25 @@ def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTr
         turnUpper.pos = right_turnUpper             # Dial circles in the upper positions
         turnLower.pos = right_turnLower
 
-    # Response objects on
-    if not practiceDial: fixCross.setAutoDraw(True)
+    # Response objects on (dial only visible when practice, fix only visible when task)
     if practiceDial:
         responseCircle.setAutoDraw(True) 
         turnLower.setAutoDraw(True) 
-        turnUpper.setAutoDraw(True) 
-    probeTime = time.time()
-
+        turnUpper.setAutoDraw(True)
+    else: fixCross.setAutoDraw(True)
+        
+    # Probe trigger
     if isTask: mywin.callOnFlip(print, probeTrig)
 
+    # Show probe
     mywin.flip()
+    probeTime = time.time()
 
     if isTask: core.wait(2/monitorHZ); print(0)
 
+    # Key press
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
     pressTime = time.time()
-
-    if isTask: print(respTrig); core.wait(2/monitorHZ); print(0)
 
     if not practiceDial:
         responseCircle.setAutoDraw(True) 
@@ -260,6 +270,9 @@ def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTr
     elif 'q' in key_press:
         core.quit()
 
+    if isTask: print(respTrig); core.wait(2/monitorHZ); print(0)
+
+    # Key release
     while key_release == [] and count < maxTurn:
         
         key_release = kb.getKeys(keyList = [key], waitRelease = True, clear = True)
@@ -273,8 +286,7 @@ def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTr
         mywin.flip()
     
     releaseTime = time.time()
-    key_press = []
-    key_release = []
+    key_press = []; key_release = []
 
     # Response objects off
     responseCircle.setAutoDraw(False) 

@@ -6,7 +6,7 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'lab'
+setting = 'home'
 screen = 'laptop'
 portType = 'parallel'
 
@@ -23,7 +23,7 @@ if setting == 'home':
 
 elif setting == 'lab':
     eyeDirectory = 'hello'; dataDirectory = 'hello2'
-    
+
     monitorHZ = 239
     monitorSize = [1920,1080]
     height = 28; distance = 60; vertResolution = 1920 

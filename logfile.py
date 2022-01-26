@@ -51,7 +51,7 @@ def newLogfile():
         writer = csv.DictWriter(datafile, delimiter = ',', fieldnames = header)
         writer.writeheader()
 
-    return filename, header
+    return filename, header, subjectID, session
 
 """ Create trialdata dict """
 

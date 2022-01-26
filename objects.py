@@ -242,7 +242,7 @@ blockStartText = visual.TextStim(
     pos = [0,0],
     height = fontSizePreCue) 
 
-""" Task start & end """
+""" Task end """
 
 taskEndText = visual.TextStim(
     win = mywin, 
@@ -252,6 +252,8 @@ taskEndText = visual.TextStim(
     pos = [0,0],
     height = fontSizePreCue)
     
+""" Eye-tracker """
+
 eyecalibrationText = visual.TextStim(
     win = mywin, 
     font = textFont,
@@ -266,4 +268,20 @@ eyecalibrationCounterText = visual.TextStim(
     text = '',
     color = fontColor,
     pos = [0,-barSize[0]],
+    height = fontSizePreCue)
+
+eyecalibrationWaitText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = 'Please wait for the experimenter to calibrate the eye-tracking equipment',
+    color = fontColor,
+    pos = [0,0],
+    height = fontSizePreCue)
+
+eyecalibrationSaveText = visual.TextStim(
+    win = mywin, 
+    font = textFont,
+    text = 'Saving data, please wait',
+    color = fontColor,
+    pos = [0,0],
     height = fontSizePreCue)

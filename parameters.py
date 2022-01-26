@@ -6,8 +6,9 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'home'
+setting = 'lab'
 screen = 'laptop'
+portType = 'parallel'
 
 if setting == 'home':
     dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'
@@ -21,6 +22,8 @@ if setting == 'home':
         height = 35; distance = 70; vertResolution = 2560 
 
 elif setting == 'lab':
+    eyeDirectory = 'hello'; dataDirectory = 'hello2'
+    
     monitorHZ = 239
     monitorSize = [1920,1080]
     height = 28; distance = 60; vertResolution = 1920 

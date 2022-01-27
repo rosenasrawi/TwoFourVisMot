@@ -1,38 +1,21 @@
 """ Import packages"""
 
-from psychopy import core, event
+from psychopy import parallel, event
 from eyelinkPackages import eyelinker
 import os
 
 """ Import other task scripts """
 
-from parameters import monitorHZ, portType, eyeDirectory
+from parameters import eyeDirectory
 from objects import mywin, eyecalibrationWaitText, eyecalibrationSaveText
 
 """ EEG """
 
-# Parallel port 
-if portType == 'parallel':
-    from psychopy import parallel
-    # Create connection with port (parallel or serial)
-    def connectEEG():
-        portEEG = parallel.ParallelPort(address = 0x3050)
-        portEEG.setData(0)
-        
-        return portEEG
-
-# Serial port
-elif portType == 'serial':
-    from psychopy import serial
-    # Create connection with port (parallel or serial)
-    def connectEEG():
-        portEEG = serial.Serial(
-            port = 'COM7', baudrate = 115200,
-            parity = serial.PARITY_NONE,
-            stopbits = serial.STOPBITS_ONE,
-            bytesize = serial.EIGHTBITS)
-
-        return portEEG
+def connectEEG():
+    portEEG = parallel.ParallelPort(address = 0x3050)
+    portEEG.setData(0)
+    
+    return portEEG
 
 """ Eye-tracker """
 

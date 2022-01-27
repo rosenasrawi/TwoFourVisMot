@@ -6,9 +6,8 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'lab'
+setting = 'home'
 screen = 'laptop'
-portType = 'parallel'
 
 if setting == 'home':
     dataDirectory = '/Users/rosenasrawi/Documents/VU PhD/Projects/rn4:Mika - Vis-mot four items/Data/pilot/logfiles/'
@@ -73,7 +72,7 @@ eyeCalibMini = (1/510, 1/510, 1/510)
 # Timings
 fixTime = [int(monitorHZ/2), int(monitorHZ*8/10)]   # 500, 800 ms
 encodingTime = int(monitorHZ/4)                     # 250 ms
-delayTime = int(monitorHZ*2.25)                     # 2250 ms
+delayTime = int(monitorHZ*1.75)                     # 2250 ms
 feedbackTime = int(monitorHZ/4)                     # 250 ms
 counterTime = int(monitorHZ/2)                      # 500 ms
 calibrationTime = int(monitorHZ)

@@ -1,9 +1,9 @@
 """ Input on what task to run """
 
-taskInput = input('Do you wish to run the main task (Y/N)? ')
+taskInput = input('Do you wish to run the main task (y/n)? ')
 if taskInput == 'Y' or taskInput == 'y': isTask = True
 elif taskInput == 'N' or taskInput == 'n': isTask = False
-else: print('Error: incorrect input value (not Y or N), please try running the script again.')
+else: print('Error: incorrect input value (not y or n), please try running the script again.')
 
 """ Import other task scripts """
 
@@ -51,8 +51,8 @@ for block in range(len(dialTypes)):
         targetCol, targetOri = trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType)
         
         # Start trial
-        thisFixTime = presentStim(isTask, encTrig, portType, portEEG, tracker)
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False, isTask, probeTrig, respTrig, portType, portEEG, tracker)
+        thisFixTime = presentStim(isTask, encTrig, portEEG, tracker)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False, isTask, probeTrig, respTrig, portEEG, tracker)
         reportOri, difference, performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
         performanceTrials.append(performance)
 

@@ -26,7 +26,7 @@ def taskSpecs(isTask):
     trialTypes = list(range(16))
     
     if isTask:
-        dials = ['U', 'R']
+        dials = ['U','R','U','R']
         loads = [2,4,2,4]
         trialTypes *= 4
     elif not isTask:
@@ -193,8 +193,6 @@ def presentStim(isTask, encTrig, portEEG, tracker):
     leftBarBot.setAutoDraw(True)
     rightBarBot.setAutoDraw(True)
 
-    mywin.callOnFlip(print, encTrig)
-
     if isTask: 
         mywin.callOnFlip(tracker.send_message, 'trig' + str(encTrig))
         mywin.callOnFlip(portEEG.setData, encTrig)
@@ -331,7 +329,7 @@ def presentTrialFeedback(clockwise, count, targetOri, dialType):
 
 """ Eye calibration screen """
 
-def myTrackCalibration():
+def myTrackCalibration(isTask, portEEG, tracker):
 
     # Please follow the dot in 3, 2, 1:
     eyecalibrationText.setAutoDraw(True)
@@ -354,11 +352,17 @@ def myTrackCalibration():
     random.shuffle(posOrder)
 
     for pos in posOrder:
+        calibTrig = calibTriggers[pos]
         eyecalibrationCircle.pos = list(allPositions[pos])
         eyecalibrationCircleMini.pos = list(allPositions[pos])
 
+        if isTask:
+            mywin.callOnFlip(tracker.send_message, 'trig'+ str(calibTrig))
+            mywin.callOnFlip(portEEG.setData, calibTrig)
+
         for i in range(calibrationTime): # 1500 ms
             mywin.flip()
+            if isTask and i == 2: portEEG.setData(0)
 
     eyecalibrationCircle.setAutoDraw(False)
     eyecalibrationCircleMini.setAutoDraw(False)   
@@ -385,6 +389,12 @@ def presentBlockStart(thisBlockNum, numBlocks):
     blockStartText.draw()
     mywin.flip()
     event.waitKeys(keyList = 'space')       
+
+""" Saving data """
+def presentSavingData():
+
+    eyecalibrationSaveText.draw()
+    mywin.flip()
 
 """ Task end """
 

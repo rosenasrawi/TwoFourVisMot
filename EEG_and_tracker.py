@@ -37,14 +37,12 @@ def calibrateTracker(tracker):
 
     eyecalibrationWaitText.draw()
     mywin.flip()
-    event.waitKeys(keyList = 'R')
+    event.waitKeys(keyList = 'r')
     
     tracker.start_recording()
 
 def stopTracker(tracker):
     os.chdir(eyeDirectory)
-
-    eyecalibrationSaveText.draw()
 
     tracker.stop_recording()
     tracker.transfer_edf()

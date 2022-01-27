@@ -66,11 +66,12 @@ for block in range(len(dialTypes)):
     presentBlockFeedback(performanceTrials)
     
     if block != len(dialTypes)-1:
-        myTrackCalibration()
+        myTrackCalibration(isTask, portEEG, tracker)
         if isTask:
             calibrateTracker(tracker)
 
 if isTask:
+    presentSavingData()
     stopTracker(tracker)
 
 presentTaskEnd()

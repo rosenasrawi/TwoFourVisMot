@@ -6,7 +6,7 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'home'
+setting = 'lab'
 screen = 'laptop'
 
 if setting == 'home':
@@ -97,3 +97,4 @@ colorDistrib = {1: [0,3,1,2], 2: [1,2,0,3], 3: [2,1,0,3], 4: [3,0,1,2]}
 xPositions = [-barSize[1], 0, barSize[1]]
 yPositions = [barSize[1], 0, -barSize[1]]
 allPositions = list(itertools.product(xPositions, yPositions)) # 9 times x,y coordinates
+calibTriggers = [201,202,203,204,205,206,207,208,209]

@@ -1,6 +1,6 @@
 """ Import packages"""
 
-from psychopy import parallel, serial, core, event
+from psychopy import core, event
 from eyelinkPackages import eyelinker
 import os
 
@@ -13,7 +13,7 @@ from objects import mywin, eyecalibrationWaitText, eyecalibrationSaveText
 
 # Parallel port 
 if portType == 'parallel':
-
+    from psychopy import parallel
     # Create connection with port (parallel or serial)
     def connectEEG():
         portEEG = parallel.ParallelPort(address = 0x3050)
@@ -23,7 +23,7 @@ if portType == 'parallel':
 
 # Serial port
 elif portType == 'serial':
-
+    from psychopy import serial
     # Create connection with port (parallel or serial)
     def connectEEG():
         portEEG = serial.Serial(

@@ -193,8 +193,8 @@ class ConnectedEyeLinker:
         self.send_command('elcl_select_configuration = %s' % settings['elcl_configuration'])
 
         #pl.setCalibrationColors(settings['foreground_color'], settings['background_color'])
-        pl.setCalibrationSounds(
-            settings['target_sound'], settings['good_sound'], settings['error_sound'])
+        # pl.setCalibrationSounds(
+        #     settings['target_sound'], settings['good_sound'], settings['error_sound'])
 
         if self.eye in ('LEFT', 'RIGHT'):
             self.send_command('active_eye = %s' % self.eye)

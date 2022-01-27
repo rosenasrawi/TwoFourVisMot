@@ -52,7 +52,7 @@ for block in range(len(dialTypes)):
         
         # Start trial
         thisFixTime = presentStim(isTask, encTrig, portType, portEEG, tracker)
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False, isTask, probeTrig, respTrig)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(targetCol, dialType, False, isTask, probeTrig, respTrig, portType, portEEG, tracker)
         reportOri, difference, performance = presentTrialFeedback(clockwise, count, targetOri, dialType)
         performanceTrials.append(performance)
 

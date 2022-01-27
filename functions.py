@@ -71,7 +71,7 @@ def presentPrecueDial(dialType):
         practiceBar.fillColor = random.choice(barColors)
 
         practiceBar.setAutoDraw(True)
-        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType, True, False, 0, 0)
+        clockwise, count, probeTime, pressTime, releaseTime = presentResponse(fixColor, dialType, True, False, 0, 0, [],[],[])
         practiceBar.setAutoDraw(False)
         presentTrialFeedback(clockwise,count,practiceBar.ori, dialType)
     
@@ -206,7 +206,7 @@ def presentStim(isTask, encTrig, portType, portEEG, tracker):
     # Encoding display
     for i in range(encodingTime):
         mywin.flip()
-        if isTask and i == 2 and portType == 'parellel': 
+        if isTask and i == 2 and portType == 'parallel': 
             portEEG.setData(0)
 
     leftBarTop.setAutoDraw(False)
@@ -222,7 +222,7 @@ def presentStim(isTask, encTrig, portType, portEEG, tracker):
 
 """ Present response dial """
 
-def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTrig):
+def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTrig, portType, portEEG, tracker):
 
     # Reset
     kb.clearEvents()
@@ -246,13 +246,19 @@ def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTr
     else: fixCross.setAutoDraw(True)
         
     # Probe trigger
-    if isTask: mywin.callOnFlip(print, probeTrig)
+    if isTask:
+        mywin.callOnFlip(tracker.send_message, 'trig' + str(probeTrig))
+        if portType == 'parallel':
+            mywin.callOnFlip(portEEG.setData, probeTrig)
+        elif portType == 'serial':
+            portEEG.open()
+            mywin.callOnFlip(portEEG.write, probeTrig.to_bytes(1, 'little'))  
 
     # Show probe
     mywin.flip()
     probeTime = time.time()
-
-    if isTask: core.wait(2/monitorHZ); print(0)
+    if isTask and portType == 'parallel':
+        core.wait(2/monitorHZ); portEEG.setData(0)
 
     # Key press
     key_press = event.waitKeys(keyList = ['z', 'm', 'q', 'escape'])     # Wait for a keypress
@@ -270,7 +276,14 @@ def presentResponse(targetCol, dialType, practiceDial, isTask, probeTrig, respTr
     elif 'q' in key_press:
         core.quit()
 
-    if isTask: print(respTrig); core.wait(2/monitorHZ); print(0)
+    if isTask: 
+        mywin.callOnFlip(tracker.send_message, 'trig' + str(respTrig))
+        if portType == 'parallel':
+            portEEG.setData(respTrig)
+            core.wait(2/monitorHZ); portEEG.setData(0)
+        elif portType == 'serial':
+            portEEG.open()
+            portEEG.write(respTrig.to_bytes(1, 'little'))  
 
     # Key release
     while key_release == [] and count < maxTurn:

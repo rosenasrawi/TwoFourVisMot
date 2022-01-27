@@ -6,7 +6,7 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'home'
+setting = 'lab'
 screen = 'laptop'
 portType = 'parallel'
 
@@ -22,7 +22,8 @@ if setting == 'home':
         height = 35; distance = 70; vertResolution = 2560 
 
 elif setting == 'lab':
-    eyeDirectory = 'hello'; dataDirectory = 'hello2'
+    dataDirectory = r'C:\Users\memticipation-std\Desktop\LABSSRV-DATA\Mika-Rose\TwoFourVisMot\logfiles'
+    eyeDirectory = r'C:\Users\memticipation-std\Desktop\LABSSRV-DATA\Mika-Rose\TwoFourVisMot\eyedata' 
 
     monitorHZ = 239
     monitorSize = [1920,1080]

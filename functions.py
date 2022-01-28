@@ -158,7 +158,7 @@ def trialSpecs(thisItemConstel, thisTargetLoc, targetColors, loadType):
     targetBar = bars[thisTargetLoc-1]
 
     # Target ori & col
-    targetCol = targetBar.fillColor; targetOri = targetBar.ori
+    targetCol = targetBar.name; targetOri = targetBar.ori
 
     return targetCol, targetOri
 

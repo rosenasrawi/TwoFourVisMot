@@ -55,7 +55,7 @@ def newLogfile():
 
 """ Create trialdata dict """
 
-def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
+def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetCol, 
                     thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
                     performance, thisFixTime, probeTime, pressTime, releaseTime,
                     dialType, loadType, trialType, thisBlockNum, encTrig, probeTrig, respTrig):
@@ -69,7 +69,7 @@ def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColo
                  'rightBarTopCol':  rightBarTop.name,
                  'leftBarBotCol':   leftBarBot.name, 
                  'rightBarBotCol':  rightBarBot.name,               
-                 'targetCol':       targetColors[0], 
+                 'targetCol':       targetCol, 
                  'targetLocation':  thisTargetLoc,
                  'targetOri':       round(targetOri),
                  'reportOri':       round(reportOri),

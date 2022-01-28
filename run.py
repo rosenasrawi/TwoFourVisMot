@@ -57,7 +57,7 @@ for block in range(len(dialTypes)):
         performanceTrials.append(performance)
 
         # Log trial data
-        trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetColors, 
+        trialData = createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetCol, 
                                     thisTargetLoc, targetOri, reportOri, count, clockwise, difference,
                                     performance, thisFixTime, probeTime, pressTime, releaseTime,
                                     dialType, loadType, trialType, thisBlockNum, encTrig, probeTrig, respTrig)

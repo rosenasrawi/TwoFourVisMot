@@ -6,7 +6,7 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'lab'
+setting = 'home'
 screen = 'laptop'
 
 if setting == 'home':
@@ -63,11 +63,11 @@ right_turnUpper = [circleRadius, 0]
 right_turnLower = [-circleRadius, 0]
 
 # Colors
-backgroundColor = (50/510, 50/510, 50/510)                  # darkdrey
-barColors = ["#C2A025", "#3843C2", "#2FC259", "#CF3C3C"]
-barColorNames = ['YELLOW', 'BLUE', 'GREEN', 'RED']       
-fixColor = (300/510,300/510,300/510)                        # lightgrey
-eyeCalibMini = (1/510, 1/510, 1/510)
+backgroundColor = [-0.3, -0.3, -0.3]                  # darkdrey
+barColors = ["#ff8a65","#29b6f6","#66bb6a","#b39ddb"] #["#ff8a65","#42a5f5","#4caf50","#b39ddb"]
+barColorNames = ['ORANGE', 'BLUE', 'GREEN', 'PURPLE']       
+fixColor = [0.3, 0.3, 0.3]                        # lightgrey
+eyeCalibMini = [0.3, 0.3, 0.3]
 
 # Timings
 fixTime = [int(monitorHZ/2), int(monitorHZ*8/10)]   # 500, 800 ms

@@ -26,9 +26,9 @@ def taskSpecs(isTask):
     trialTypes = list(range(16))
     
     if isTask:
-        dials = ['U','R','U','R']
-        loads = [2,4,2,4]
-        trialTypes *= 4
+        dials = ['U','R']#['U','R','U','R']
+        loads = [2,4]#[2,4,2,4]
+        # trialTypes *= 4
     elif not isTask:
         dials = ['U','R']; loads = [2,4]
     

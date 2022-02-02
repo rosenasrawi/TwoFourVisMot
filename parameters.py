@@ -6,7 +6,7 @@ import itertools
 """ Configuration parameters """
 
 # Computer settings
-setting = 'home'
+setting = 'lab'
 screen = 'laptop'
 
 if setting == 'home':
@@ -64,7 +64,7 @@ right_turnLower = [-circleRadius, 0]
 
 # Colors
 backgroundColor = [-0.3, -0.3, -0.3]                  # darkdrey
-barColors = ["#ff8a65","#29b6f6","#66bb6a","#b39ddb"] #["#ff8a65","#42a5f5","#4caf50","#b39ddb"]
+barColors = ["#ff8a65","#64b5f6","#81c784","#ce93d8"] #["#ff8a65","#29b6f6","#66bb6a","#b39ddb"] #["#ff8a65","#42a5f5","#4caf50","#b39ddb"] 
 barColorNames = ['ORANGE', 'BLUE', 'GREEN', 'PURPLE']       
 fixColor = [0.5, 0.5, 0.5]                        # lightgrey
 eyeCalibMini = [-0.3, -0.3, -0.3]

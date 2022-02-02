@@ -12,8 +12,8 @@ from parameters import dataDirectory
 def newLogfile():
     os.chdir(dataDirectory)
     
-    subjectID = input('Subject ID (01, 02, ...): ')
-    session = input('Current session (a, b): ') 
+    subjectID = input('Subject ID (01, 02, 03, ...): ')
+    session = input('Current session (p, a, b): ') 
     now = datetime.now(); now = now.strftime('%m%d%Y_%H%M%S')
 
     filename = 'rn4_s' + subjectID + session + '_' + now + '.csv'
@@ -25,7 +25,7 @@ def newLogfile():
               'rightBarTopCol',
               'leftBarBotCol', 
               'rightBarBotCol',               
-              'targetCol', 
+              'targetCol',
               'targetLocation',
               'targetOri',
               'reportOri',
@@ -61,10 +61,10 @@ def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetCol,
                     dialType, loadType, trialType, thisBlockNum, encTrig, probeTrig, respTrig):
 
     # Create trialdata
-    trialData = {'leftBarTopOri':   leftBarTop.ori,                 
-                 'rightBarTopOri':  rightBarTop.ori,
-                 'leftBarBotOri':   leftBarBot.ori, 
-                 'rightBarBotOri':  rightBarBot.ori,
+    trialData = {'leftBarTopOri':   round(leftBarTop.ori),                 
+                 'rightBarTopOri':  round(rightBarTop.ori),
+                 'leftBarBotOri':   round(leftBarBot.ori), 
+                 'rightBarBotOri':  round(rightBarBot.ori),
                  'leftBarTopCol':   leftBarTop.name,                 
                  'rightBarTopCol':  rightBarTop.name,
                  'leftBarBotCol':   leftBarBot.name, 
@@ -75,7 +75,7 @@ def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetCol,
                  'reportOri':       round(reportOri),
                  'circleSteps':     count, 
                  'clockwise':       clockwise,
-                 'difference':      difference, 
+                 'difference':      round(difference), 
                  'performance':     performance,
                  'fixTime':         thisFixTime, 
                  'probeTime':       probeTime,
@@ -85,7 +85,7 @@ def createTrialData(leftBarTop, rightBarTop, leftBarBot, rightBarBot, targetCol,
                  'responseDur':     releaseTime - pressTime,
                  'dialType':        dialType, 
                  'loadType':        loadType, 
-                 'trialType':       trialType,
+                 'trialType':       trialType+1,
                  'blockNum':        thisBlockNum,
                  'encTrig':         encTrig,
                  'probeTrig':       probeTrig, 

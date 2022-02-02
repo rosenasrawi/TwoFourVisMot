@@ -105,7 +105,7 @@ eyecalibrationCircle = visual.Circle(
 
 eyecalibrationCircleMini = visual.Circle(
     win = mywin,
-    radius = miniCircleRadius/3,
+    radius = miniCircleRadius/2,
     edges = circleEdges,
     lineWidth = LineWidth,
     lineColor = eyeCalibMini,

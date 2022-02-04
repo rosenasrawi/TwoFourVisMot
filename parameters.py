@@ -18,7 +18,7 @@ if setting == 'home':
     elif screen == 'monitor':
         monitorHZ = 60
         monitorSize = [2560,1440]
-        height = 35; distance = 70; vertResolution = 2560 
+        height = 30; distance = 75; vertResolution = 2560 
 
 elif setting == 'lab':
     dataDirectory = r'C:\Users\memticipation-std\Desktop\LABSSRV-DATA\Mika-Rose\TwoFourVisMot\logfiles'
